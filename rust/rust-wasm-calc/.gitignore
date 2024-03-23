@@ -1,4 +1,0 @@
-*.gitignore
-*.bat
-pkg/
-servewasm.py
