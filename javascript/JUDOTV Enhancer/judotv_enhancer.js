@@ -1,3 +1,18 @@
+function doSomething() {
+  document.getElementsByClassName("video-js")[0].addEventListener("click", main_inject());
+	main_inject();
+	console.info("Window Loaded");
+}
+
+if (document.readyState === "loading") {
+  // Loading hasn't finished yet
+  document.addEventListener("DOMContentLoaded", doSomething);
+} else {
+  // `DOMContentLoaded` has already fired
+  doSomething();
+}
+
+
 function remove_addbanners() {
     remove_list = ["!justify-start", "!justify-end"];
 
@@ -8,7 +23,7 @@ function remove_addbanners() {
             }
         } catch (err) {
             if (!err === undefined) {
-                console.log(err)
+                console.warn(err)
             }
         }
     };
@@ -29,7 +44,8 @@ function fullscreenthis(elem) {
 
 function create_fullscreen_button() {
     //the video frame holder
-    videoframe = document.getElementsByClassName("vjs-tech")[0].parentElement
+    //videoframe = document.getElementsByClassName("vjs-tech")[0].parentElement
+		videoframe = document.getElementsByClassName("video-js")[0]
 
     //Check if fullscreen button exist - if not create one
     if (!!document.getElementById("fsbutton") == false) {
@@ -48,5 +64,20 @@ function create_fullscreen_button() {
     };
 }
 
-remove_addbanners();
-create_fullscreen_button();
+function main_inject(){
+	try {
+	remove_addbanners();
+	} catch(err) {
+		console.info("Could not remove adds")
+		console.warn(err)
+	};
+	
+	try {
+		create_fullscreen_button();
+	} catch(err) {
+		console.info("Could not add Fullscreen button")
+		console.warn(err)
+	};
+};
+
+main_inject();
