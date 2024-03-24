@@ -1,0 +1,91 @@
+ <!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<base target="_blank">
+<title>F1 penalty generator</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<style type="text/css">
+@font-face {
+    font-family: "Formula1";
+    src:
+        url("Formula1-Regular_web_0.ttf"),
+        font-weight: normal;
+    font-style: normal;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+}
+
+.imgsize {
+    width: 882px;
+    height: 86px;
+}
+
+.f1text {
+    font-family: Formula1
+}
+
+.firstname {
+    position: absolute;
+    top: -21px;
+    font-size: 26px;
+    color: white;
+    left: 488px;
+}
+
+.lastname {
+    position: absolute;
+    top: 5px;
+    font-size: 33px;
+    color: white;
+    left: 483px;
+    text-transform: uppercase;
+}
+</style>
+<script type="text/javascript">
+function printcontainer() {
+    container = document.getElementsByClassName("container")[0];
+
+    PrintDiv(container);
+}
+
+function PrintDiv(div) {
+    html2canvas(div, allowTaint = "true").then(function(canvas) {
+        var myImage = canvas.toDataURL();
+        downloadURI(myImage, "5secondpenalty.png");;
+    });
+}
+
+function downloadURI(uri, name) {
+    var link = document.createElement("a");
+
+    link.download = name;
+    link.href = uri;
+    document.body.appendChild(link);
+    link.click();
+    //after creating link you should delete dynamic link
+    //clearDynamicLink(link); 
+}
+</script>
+
+<body>
+
+<div id="here" class="imgsize container">
+	<img src="5secondpenalty.png" class="imgsize" crossorigin="anonymous">
+	<p class="f1text firstname" contenteditable="true">Firstname</p>
+	<p class="f1text lastname" contenteditable="true">LASTNAME</p>
+</div>
+
+ <button onclick="printcontainer()" style="margin: 10px">Download image</button> 
+ 
+ <footer>
+	 <small>This script requires CORS - if it doesn't work you must host it as a (local)server.</small>
+	 <br>
+	 <small>The use of <a href="https://html2canvas.hertzen.com/">html2canvas</a> is licensed under the <a href="https://choosealicense.com/licenses/mit/">MIT License</a></small>
+ </footer>
+
+</body>
+</html> 
