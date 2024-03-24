@@ -11,6 +11,8 @@ The sideproject folder is categorised by the projects main language; Meaning tha
 The JUDOTV enhancer is for injecting into the browser page (I am using a JS extension for this).
 The code adds a fullscreen button on the JudoTV page (which would otherwise be a premium feature) and it removes some of those pesky banner ads (when it works).
 You may have to reinject this script whenever you load a new page on the Judotv domain.
+#### F1 Penalty Generator
+This is a generator to make penalties, but it must be served from the same domain - which means you must probably run it as a server. An easy way to do this is `python3 -m http.server -d [path/to/f1penalty]`. This project uses [html2canvas](https://github.com/niklasvh/html2canvas).
 
 ## Rust folder
 #### rust-wasm-calc
